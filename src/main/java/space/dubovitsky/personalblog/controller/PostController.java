@@ -25,6 +25,11 @@ public class PostController {
         return postService.getAllPost();
     }
 
+    @GetMapping("/search/{text}")
+    public Iterable<Post> findPostsByText(@PathVariable String text) {
+        return postService.findPostsByText(text);
+    }
+
     @PostMapping("/post")
     public ResponseEntity getPost(@RequestBody Post post) {
         return ResponseEntity.ok(postService.addPost(post));

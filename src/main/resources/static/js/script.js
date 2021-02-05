@@ -73,5 +73,22 @@ document.querySelector('#getPostsById').addEventListener('click', () => {
     })
 });
 
+async function findPostsByText(text) {
+    const res = await fetch(`http://localhost:8080/search/${text}`, {
+        method: 'GET',
+        headers: {
+            'Content-type' : 'Application/json'
+        }
+    });
+
+    return await res.json();
+}
+
+document.querySelector('#search').addEventListener('keypress', (event) => {
+    findPostsByText(event.target.value).then(data => {
+        console.log(data);
+    })
+});
+
 
 
